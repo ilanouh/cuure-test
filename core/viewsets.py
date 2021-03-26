@@ -11,7 +11,7 @@ class NoteViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.filter(nutritionist=self.request.user)
-        return queryset
+        return queryset.select_related('patient', 'nutritionist')
 
 
 class PatientViewSet(viewsets.ModelViewSet):
@@ -21,4 +21,4 @@ class PatientViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = super().get_queryset()
         queryset = queryset.filter(nutritionists=self.request.user)
-        return queryset
+        return queryset.prefetch_related('nutritionists', 'notes')

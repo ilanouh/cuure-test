@@ -8,6 +8,7 @@ router.register(r'notes', viewsets.NoteViewSet)
 router.register(r'patients', viewsets.PatientViewSet)
 
 
+app_name = "core"
 urlpatterns = [
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
 ]
